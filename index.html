@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serigne Bamba SAMB — Économie &amp; Finance</title>
+<meta name="description" content="Portfolio de Serigne Bamba SAMB, étudiant en Master 1 Économie du développement au CERDI (UCA) — recherche de stage en économie/finance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --ink-soft:#5B5A52;
+    --paper:#F7F5F0;
+    --paper-2:#EFEAE0;
+    --card:#FFFFFF;
+    --gold:#A9782F;
+    --teal:#2F5D5A;
+    --line:#D7D0C0;
+    --maxw:820px;
+    --shadow: 0 1px 2px rgba(20,33,61,0.04);
+  }
+  [data-theme="dark"]{
+    --ink:#F3F1EA;
+    --ink-soft:#B9B6A9;
+    --paper:#151A26;
+    --paper-2:#1C2230;
+    --card:#1C2230;
+    --gold:#D4A85C;
+    --teal:#6FB3AC;
+    --line:#333B4D;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", -apple-system, sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+  a{color:var(--teal);}
+  ::selection{background:var(--gold);color:var(--paper);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  /* Scroll progress bar */
+  #progress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:var(--gold); z-index:50; transition:width .1s linear;
+  }
+
+  /* Nav */
+  nav.site-nav{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.site-nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .nav-name{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:14px; letter-spacing:0.02em;
+    color:var(--ink); text-decoration:none;
+  }
+  .nav-right{display:flex; align-items:center; gap:22px;}
+  .nav-links{display:flex; gap:22px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    color:var(--ink-soft); text-decoration:none; font-size:14.5px;
+    padding-bottom:3px; border-bottom:1px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .nav-links a:hover, .nav-links a.active{color:var(--ink); border-color:var(--gold);}
+  #theme-toggle{
+    border:1px solid var(--line); background:none; color:var(--ink-soft);
+    width:30px; height:30px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  #theme-toggle:hover{color:var(--ink); border-color:var(--gold);}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{
+    position:relative; padding:72px 0 68px; overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 88px),
+      repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px 56px);
+    opacity:0.35;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+    -webkit-mask-image:linear-gradient(to bottom, black, transparent 85%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative; display:flex; gap:44px; align-items:flex-end;}
+  .hero-text{flex:1; min-width:0;}
+  .hero-photo{
+    flex-shrink:0; width:132px; height:132px; border-radius:50%;
+    overflow:hidden; border:2px solid var(--gold);
+    box-shadow: var(--shadow);
+    transition:transform .3s ease;
+  }
+  .hero-photo:hover{transform:rotate(-2deg) scale(1.02);}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .badge{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:"IBM Plex Mono", monospace; font-size:12.5px;
+    color:var(--teal); background:var(--paper-2); border:1px solid var(--line);
+    padding:5px 11px; border-radius:20px; margin-bottom:20px;
+  }
+  .badge::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--teal); flex-shrink:0;}
+  .hero h1{
+    font-family:"Fraunces", serif; font-weight:500;
+    font-size:clamp(38px, 6.4vw, 60px); line-height:1.02;
+    margin:0 0 14px; letter-spacing:-0.01em;
+  }
+  .hero .role{
+    font-family:"IBM Plex Mono", monospace; color:var(--gold);
+    font-size:14.5px; margin:0 0 22px; letter-spacing:0.01em;
+  }
+  .hero p.lede{max-width:56ch; color:var(--ink-soft); font-size:17.5px; margin:0 0 26px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:"IBM Plex Sans"; font-size:14.5px; font-weight:500;
+    padding:11px 20px; border-radius:6px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    border:1px solid transparent; transition:opacity .15s ease, transform .1s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{opacity:0.85;}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+  @media (max-width:640px){
+    .hero .wrap{flex-direction:column-reverse; align-items:flex-start; gap:24px;}
+    .hero-photo{width:96px; height:96px;}
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* Section rhythm */
+  section{padding:60px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{font-family:"Fraunces", serif; font-weight:500; font-size:28px; margin:0 0 28px;}
+  h3{font-family:"IBM Plex Sans"; font-weight:600; font-size:16.5px; margin:0 0 6px;}
+
+  /* About facts row */
+  .facts{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    margin-top:32px; padding-top:26px; border-top:1px solid var(--line);
+  }
+  .facts dt{font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--gold); margin-bottom:6px;}
+  .facts dd{margin:0; color:var(--ink); font-size:14.5px;}
+  @media (max-width:560px){ .facts{grid-template-columns:1fr; gap:16px;} }
+
+  /* Research */
+  .research-block{margin-bottom:28px;}
+  .research-block p{color:var(--ink-soft); margin:0 0 14px;}
+  ul.method-list{margin:18px 0 0; padding:0; list-style:none; border-top:1px solid var(--line);}
+  ul.method-list li{
+    padding:14px 0; border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:120px 1fr; gap:18px;
+  }
+  ul.method-list .m-label{font-family:"IBM Plex Mono", monospace; font-size:12px; color:var(--teal); padding-top:2px;}
+  ul.method-list .m-body{color:var(--ink); font-size:15px;}
+  @media (max-width:560px){ ul.method-list li{grid-template-columns:1fr; gap:4px;} }
+  .status-note{margin-top:20px; font-size:13.5px; color:var(--ink-soft); font-style:italic;}
+
+  /* Formation accordion */
+  .formation-item{
+    border:1px solid var(--line); border-radius:8px; margin-bottom:12px;
+    background:var(--card); overflow:hidden;
+  }
+  .formation-item summary{
+    list-style:none; cursor:pointer; padding:18px 20px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  .formation-item summary::-webkit-details-marker{display:none;}
+  .formation-item summary .f-head{flex:1; min-width:0;}
+  .formation-item summary h3{margin-bottom:2px;}
+  .formation-item summary .f-sub{color:var(--ink-soft); font-size:14px;}
+  .formation-item summary .f-year{
+    font-family:"IBM Plex Mono", monospace; font-size:12.5px; color:var(--gold); white-space:nowrap;
+  }
+  .formation-item summary .f-chevron{
+    color:var(--ink-soft); transition:transform .2s ease; flex-shrink:0; font-size:13px;
+  }
+  .formation-item[open] summary .f-chevron{transform:rotate(90deg);}
+  .formation-item .f-body{padding:0 20px 20px 20px;}
+  .formation-item ul{margin:0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .formation-item li{margin-bottom:6px;}
+
+  /* Project grid */
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .project-card{
+    border:1px solid var(--line); border-radius:8px; padding:20px;
+    background:var(--card); transition:border-color .15s ease, transform .15s ease;
+  }
+  .project-card:hover{border-color:var(--gold); transform:translateY(-2px);}
+  .project-card h3{margin-bottom:8px;}
+  .project-card p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  @media (max-width:640px){ .project-grid{grid-template-columns:1fr;} }
+
+  /* Work items */
+  .work-item{padding:20px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;}
+  .work-item:last-child{border-bottom:none;}
+  .work-item h3{margin-bottom:4px;}
+  .work-item p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .work-item .w-year{font-family:"IBM Plex Mono", monospace; font-size:12.5px; color:var(--gold); white-space:nowrap; padding-top:2px;}
+  @media (max-width:560px){ .work-item{flex-direction:column; gap:4px;} }
+
+  /* Tabs — compétences */
+  .tabs{display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;}
+  .tab-btn{
+    font-family:"IBM Plex Mono", monospace; font-size:12.5px;
+    background:none; border:1px solid var(--line); color:var(--ink-soft);
+    padding:8px 14px; border-radius:20px; cursor:pointer;
+    transition:all .15s ease;
+  }
+  .tab-btn.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .tab-btn:hover:not(.active){border-color:var(--gold); color:var(--ink);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+  .skill-list{list-style:none; margin:0; padding:0;}
+  .skill-list li{
+    padding:12px 0; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:12px; font-size:15px;
+  }
+  .skill-list li:last-child{border-bottom:none;}
+  .skill-list span.note{color:var(--ink-soft); font-size:13.5px; text-align:right;}
+
+  /* Contact / footer */
+  footer{padding:56px 0 68px;}
+  footer h2{margin-bottom:14px;}
+  footer p.lede{color:var(--ink-soft); max-width:50ch; margin:0 0 28px;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:36px;}
+  .contact-chip{
+    display:inline-flex; align-items:center; gap:9px;
+    border:1px solid var(--line); border-radius:8px; padding:11px 16px;
+    text-decoration:none; color:var(--ink); font-size:14.5px; background:var(--card);
+    cursor:pointer; transition:border-color .15s ease;
+  }
+  .contact-chip:hover{border-color:var(--gold);}
+  .contact-chip .ic{color:var(--gold); font-family:"IBM Plex Mono", monospace; font-size:13px;}
+  .copied-tag{
+    font-size:11.5px; color:var(--teal); font-family:"IBM Plex Mono", monospace;
+    opacity:0; transition:opacity .2s ease; margin-left:2px;
+  }
+  .copied-tag.show{opacity:1;}
+  .fine-print{font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:22px;}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-name" href="#top">S. B. SAMB</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#recherche">Recherche</a></li>
+        <li><a href="#formation">Formation</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#experience">Expérience</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Changer de thème" title="Changer de thème">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="badge">Disponible pour un stage — économie / finance</span>
+      <h1>Serigne Bamba SAMB</h1>
+      <p class="role">Économie du développement — CERDI, Université Clermont Auvergne</p>
+      <p class="lede">Étudiant en Master 1, je recherche un stage de 2 à 3 mois en économie ou finance pour mettre en pratique mes compétences en économétrie, analyse financière et gestion de projets à impact.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:bambasamb18@gmail.com">Me contacter</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/serigne-bamba-samb-860072227/" target="_blank" rel="noopener">Voir LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/photo.jpg" alt="Photo de Serigne Bamba SAMB">
+    </div>
+  </div>
+</header>
+
+<section id="profil" class="reveal">
+  <div class="wrap">
+    <h2>Profil</h2>
+    <p style="color:var(--ink-soft); max-width:60ch;">
+      Étudiant en Master 1 Économie du développement au CERDI, je m'intéresse aux questions de politique monétaire, de stabilité des prix et de financement du développement. Mon parcours, entre le Sénégal et la France, combine rigueur économétrique et goût pour l'analyse de terrain — porté par une curiosité affirmée pour la géopolitique.
+    </p>
+    <dl class="facts">
+      <div><dt>Institution</dt><dd>CERDI, Université Clermont Auvergne</dd></div>
+      <div><dt>Localisation</dt><dd>Clermont-Ferrand (63000)</dd></div>
+      <div><dt>Langues</dt><dd>Français, anglais (B1)</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="recherche" class="reveal">
+  <div class="wrap">
+    <h2>Recherche</h2>
+    <div class="research-block">
+      <h3>Le franc CFA comme ancrage anti-inflationniste</h3>
+      <p>
+        Mémoire de Master évaluant le rôle du franc CFA comme ancrage anti-inflationniste dans les pays de l'UEMOA, à travers un modèle Panel VAR testant le sens de causalité entre taux de change réel et inflation sur 2000–2023 — une question restée peu tranchée dans une littérature souvent limitée à des données antérieures à 1997.
+      </p>
+    </div>
+    <ul class="method-list">
+      <li>
+        <span class="m-label">Données</span>
+        <span class="m-body">Panel de 16 pays sur 1980–2023 (704 observations), construit à partir des extractions World Bank WDI, enrichi de séries IPC et TCER via l'API Banque mondiale.</span>
+      </li>
+      <li>
+        <span class="m-label">Cadre théorique</span>
+        <span class="m-body">Approche à effets fixes (Klau, 1998) et formule de Devarajan &amp; Rodrik (1991), avec tests de racine unitaire en panel comme vérification de robustesse.</span>
+      </li>
+      <li>
+        <span class="m-label">Traitement</span>
+        <span class="m-body">Variable de régime de change à temps variable pour traiter les sorties/entrées de la zone franc (Mali, Guinée-Bissau) ; correction de l'usage du filtre HP.</span>
+      </li>
+      <li>
+        <span class="m-label">Identification</span>
+        <span class="m-body">Stratégie instrumentale (IV/2SLS) pour traiter l'endogénéité entre indice de prix domestique et indice de prix étranger implicite.</span>
+      </li>
+    </ul>
+    <p class="status-note">Travaux en cours — recherche d'instruments additionnels pour l'estimation par variables instrumentales.</p>
+  </div>
+</section>
+
+<section id="formation" class="reveal">
+  <div class="wrap">
+    <h2>Formation</h2>
+
+    <details class="formation-item" open>
+      <summary>
+        <div class="f-head">
+          <h3>Magistère 2 / Master 1, Économie du développement</h3>
+          <div class="f-sub">CERDI, Université Clermont Auvergne</div>
+        </div>
+        <span class="f-year">2025 – 2026</span>
+        <span class="f-chevron">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul><li>Mémoire de recherche sur le franc CFA comme ancrage anti-inflationniste dans l'UEMOA (voir section Recherche)</li></ul>
+      </div>
+    </details>
+
+    <details class="formation-item">
+      <summary>
+        <div class="f-head">
+          <h3>Magistère 1 / Licence 3, Économie du développement</h3>
+          <div class="f-sub">CERDI, Université Clermont Auvergne</div>
+        </div>
+        <span class="f-year">2024 – 2025</span>
+        <span class="f-chevron">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul>
+          <li>Analyse du système financier</li>
+          <li>Analyse de la conjoncture</li>
+          <li>Microéconomie du développement</li>
+          <li>Statistiques inférentielles et optimisation économique</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="formation-item">
+      <summary>
+        <div class="f-head">
+          <h3>Licence 1-2, Administration économique et sociale</h3>
+          <div class="f-sub">Université Paul Valéry, Montpellier 3</div>
+        </div>
+        <span class="f-year">2022 – 2024</span>
+        <span class="f-chevron">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul>
+          <li>Projet de création d'une start-up : simulation des ventes, recherche de financement, calcul de rentabilité</li>
+          <li>Rédaction et identification de contrats</li>
+          <li>Gestion des ressources humaines et management</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="formation-item">
+      <summary>
+        <div class="f-head">
+          <h3>Licence 1-2, Économie et gestion</h3>
+          <div class="f-sub">Université Amadou Makhtar Mbow, Sénégal</div>
+        </div>
+        <span class="f-year">2020 – 2022</span>
+        <span class="f-chevron">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul><li>Analyse du projet de création d'une monnaie unique de la CEDEAO (l'Eco)</li></ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="projets" class="reveal">
+  <div class="wrap">
+    <h2>Projets académiques</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Analyse de la pauvreté en Ouganda</h3>
+        <p>Étude appliquée avec RStudio sur les déterminants de la pauvreté.</p>
+      </div>
+      <div class="project-card">
+        <h3>Fragmentation ethnolinguistique &amp; croissance</h3>
+        <p>Analyse économétrique de l'impact de la fragmentation ethnolinguistique sur la croissance économique.</p>
+      </div>
+      <div class="project-card">
+        <h3>Matrice de comptabilité sociale de la France</h3>
+        <p>Construction et analyse d'une matrice de comptabilité sociale (MCS).</p>
+      </div>
+      <div class="project-card">
+        <h3>Modèle de croissance endogène</h3>
+        <p>Simulation d'un modèle de croissance endogène.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="reveal">
+  <div class="wrap">
+    <h2>Expérience professionnelle</h2>
+    <div class="work-item">
+      <div>
+        <h3>Plongeur en restauration</h3>
+        <p>Extra, Clermont-Ferrand / Montpellier</p>
+      </div>
+      <span class="w-year">Depuis nov. 2023</span>
+    </div>
+    <div class="work-item">
+      <div>
+        <h3>Agent d'entretien</h3>
+        <p>Cristal Net, Montpellier</p>
+      </div>
+      <span class="w-year">Oct. 2022 – Sept. 2023</span>
+    </div>
+    <div class="work-item">
+      <div>
+        <h3>Animation de panel — sortie du Sénégal des PMA</h3>
+        <p>Université Amadou Matar Mbow, Sénégal</p>
+      </div>
+      <span class="w-year">Jan. 2025</span>
+    </div>
+  </div>
+</section>
+
+<section id="competences" class="reveal">
+  <div class="wrap">
+    <h2>Compétences</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="outils">Outils</button>
+      <button class="tab-btn" data-tab="methodes">Analyse</button>
+      <button class="tab-btn" data-tab="savoir-etre">Savoir-être</button>
+    </div>
+    <div class="tab-panel active" data-panel="outils">
+      <ul class="skill-list">
+        <li>Pack Office <span class="note">Excel, Word, PowerPoint</span></li>
+        <li>EViews <span class="note">économétrie</span></li>
+        <li>R <span class="note">programmation, RStudio</span></li>
+        <li>Python <span class="note">bases</span></li>
+      </ul>
+    </div>
+    <div class="tab-panel" data-panel="methodes">
+      <ul class="skill-list">
+        <li>Manipulation et analyse de données <span class="note"></span></li>
+        <li>Analyse et synthèse de rapports <span class="note">ex. International Debt Report 2024, Banque mondiale</span></li>
+        <li>Animation de panels <span class="note">économie / finance</span></li>
+      </ul>
+    </div>
+    <div class="tab-panel" data-panel="savoir-etre">
+      <ul class="skill-list">
+        <li>Motivé, adaptable, rigoureux <span class="note"></span></li>
+        <li>Esprit d'équipe, sens de l'écoute <span class="note"></span></li>
+        <li>Centres d'intérêt <span class="note">géopolitique, lecture, football</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="lede">Disponible pour un stage en économie ou finance. N'hésitez pas à me contacter.</p>
+    <div class="contact-grid">
+      <button class="contact-chip" data-copy="bambasamb18@gmail.com" title="Copier l'adresse">
+        <span class="ic">@</span> bambasamb18@gmail.com <span class="copied-tag">copié</span>
+      </button>
+      <button class="contact-chip" data-copy="+33 7 58 80 38 31" title="Copier le numéro">
+        <span class="ic">#</span> +33 7 58 80 38 31 <span class="copied-tag">copié</span>
+      </button>
+      <a class="contact-chip" href="https://www.linkedin.com/in/serigne-bamba-samb-860072227/" target="_blank" rel="noopener">
+        <span class="ic">in</span> LinkedIn
+      </a>
+    </div>
+    <p class="fine-print">Serigne Bamba SAMB — CERDI, Université Clermont Auvergne — Clermont-Ferrand</p>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('sbs-theme');
+  if(savedTheme) root.setAttribute('data-theme', savedTheme);
+  themeBtn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    if(next === 'dark'){ root.setAttribute('data-theme','dark'); } else { root.removeAttribute('data-theme'); }
+    localStorage.setItem('sbs-theme', next);
+  });
+
+  // Scroll progress bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+        if(link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // Reveal on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Tabs — compétences
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector('.tab-panel[data-panel="' + btn.dataset.tab + '"]').classList.add('active');
+    });
+  });
+
+  // Copy to clipboard
+  document.querySelectorAll('.contact-chip[data-copy]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      navigator.clipboard.writeText(chip.dataset.copy).then(() => {
+        const tag = chip.querySelector('.copied-tag');
+        tag.classList.add('show');
+        setTimeout(() => tag.classList.remove('show'), 1400);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
